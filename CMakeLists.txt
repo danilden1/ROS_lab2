@@ -157,10 +157,10 @@ target_link_libraries(lab_2_client
         )
 
 
-add_dependencies(lab_2_server lab_2_gencpp)
+#add_dependencies(lab_2_server lab_2_gencpp)
 
 
-add_dependencies(lab_2_client lab_2_gencpp)
+#add_dependencies(lab_2_client lab_2_gencpp)
 
 #############
 ## Install ##

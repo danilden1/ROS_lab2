@@ -15,21 +15,23 @@ int main(int argc, char **argv)
 
     ros::init(argc, argv, "get_solve_of_equations_client");
     ros::NodeHandle n;
-    ros::ServiceClient lab_2_client = n.serviceClient<lab_2::GetSolveOfEquations>("get_solve_of_equations");
+    ros::ServiceClient lab_2_client = n.serviceClient<lab_2::GetSolveOfEquations>("get_solve_of_equations_server");
     lab_2::GetSolveOfEquations srv;
     ros::Rate loop_rate(1);
 
+    float test[6] = {4.0, 6.0, 9.0, 5.0, 1.0, 18.0};
     while (ros::ok())
     {
         for(auto i = 0; i < 6; i++)
         {
-            srv.request.input_odds[i] = rand();
+            //srv.request.input_odds[i] = test[i];
+            srv.request.input_odds[i] = rand() / 10000;
         }
         if (lab_2_client.call(srv))
             ROS_INFO_STREAM("Answer = " << srv.response.answer);
         else
             ROS_ERROR_STREAM("Fail");
-        ROS_INFO("request: a = %f, b = %f, c = %f, d = %f, e = %f, f = %f"
+
         loop_rate.sleep();
     }
 }
